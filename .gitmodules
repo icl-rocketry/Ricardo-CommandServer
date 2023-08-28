@@ -1,0 +1,3 @@
+[submodule "external/pylibrnp"]
+	path = external/pylibrnp
+	url = https://github.com/icl-rocketry/pylibrnp.git
