@@ -20,7 +20,7 @@ class CommandServerFlask():
         # self.app.run(host=self.flaskhost,port=self.flaskport,debug=self.verbose,use_reloader=False)
         
     def register_command(self,command_name:str = None, command_func = None):
-        
+     
         if command_name is None: 
             raise Exception('command_name cannot be empty')
         
@@ -46,5 +46,8 @@ class CommandServerFlask():
                 res.data = 'Unkown Error'
                 return res,400
 
-        
-        self.app.add_url_rule(self.api_prefix + command_name,view_func=wrapper,methods=['POST','OPTIONS'])
+
+      
+
+
+        self.app.add_url_rule(self.api_prefix + command_name,endpoint=command_name,view_func=wrapper,methods=['POST','OPTIONS'])
