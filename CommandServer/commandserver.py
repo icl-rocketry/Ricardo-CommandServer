@@ -18,7 +18,8 @@ class CommandServer():
                  rest_port:int=1339,
                  verbose:bool=False,
                  nocli:bool=False,
-                 noflask:bool=False):
+                 noflask:bool=False,
+                 enable_test:bool = False):
         self.sio = socketio.Client(logger=False,engineio_logger=False)
         self.backend_host = backend_host
         self.backend_port = backend_port
@@ -26,6 +27,7 @@ class CommandServer():
         self.verbose = verbose
         self.nocli = nocli
         self.noflask = noflask
+        self.enable_test = enable_test
 
         self.flask_interface = CommandServerFlask(flaskport=self.rest_port,verbose=self.verbose)
 
@@ -65,13 +67,14 @@ class CommandServer():
 
     def run(self):
         #try to connect to backend sio server
-        while True:
-            try:
-                self.sio.connect('http://' + self.backend_host + ':' + str(self.backend_port) + '/',namespaces=['/','/packet'])
-                break
-            except socketio.exceptions.ConnectionError:
-                print('Server not found, attempting to reconnect!')
-                time.sleep(1)
+        if not self.enable_test:
+            while True:
+                try:
+                    self.sio.connect('http://' + self.backend_host + ':' + str(self.backend_port) + '/',namespaces=['/','/packet'])
+                    break
+                except socketio.exceptions.ConnectionError:
+                    print('Server not found, attempting to reconnect!')
+                    time.sleep(1)
         # self.flask_interface.run()
         if not self.nocli:
             cli_thread = threading.Thread(target=self.cli.run,daemon=True)

@@ -36,18 +36,13 @@ class CommandServerFlask():
 
             data = request.json
             if data is None:
+                print('bad')
                 res.data = 'Bad Request'
                 return res,400
             
-            if command_func(data):
-                res.data = 'OK'
-                return res,200
-            else:
-                res.data = 'Unkown Error'
-                return res,400
-
-
-      
-
+            command_func(data)
+            res.data = 'OK'
+            return res,200
+    
 
         self.app.add_url_rule(self.api_prefix + command_name,endpoint=command_name,view_func=wrapper,methods=['POST','OPTIONS'])
