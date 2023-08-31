@@ -1,4 +1,7 @@
 from CommandServer.commandserver import CommandServer
+#ensure all commands defined in the external commands folder are imported so they are added to the command server
+from Commands import * 
+
 import argparse
 
 
