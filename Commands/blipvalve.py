@@ -15,9 +15,11 @@ def blipvalve(instance,args):
                            "source":1,
                            "source_service":2,
                            "command_id":2,
-                           "command_arg":args['open_position']}
+                           "command_arg":args.get('open_position',180)}
 
     instance.send_command_packet(command_packet_args)
-    time.sleep(args['duration'])
+    time.sleep(args.get('duration',1))
     command_packet_args['command_arg'] = 0
     instance.send_command_packet(command_packet_args)
+
+    return True
