@@ -4,7 +4,7 @@ import time
 
 movefuelsrvthanos_ap = Cmd2ArgumentParser()
 movefuelsrvthanos_ap.add_argument("--argument",type=int,required=True)
-@CommandServer.register('movefuelsrvthanos',args=movefuelsrvthanos_ap)
+@CommandServer.register('movefuelsrvthanos',argparse=movefuelsrvthanos_ap)
 def movefuelsrvthanos(instance,args):
 
     command_packet_args = {"source":1,

@@ -4,7 +4,7 @@ import time
 
 movesrvfuelvent_ap = Cmd2ArgumentParser()
 movesrvfuelvent_ap.add_argument("--argument",type=int,required=True)
-@CommandServer.register('movesrvfuelvent',args=movesrvfuelvent_ap)
+@CommandServer.register('movesrvfuelvent',argparse=movesrvfuelvent_ap)
 def movesrvfuelvent(instance,args):
 
     command_packet_args = {"source":1,

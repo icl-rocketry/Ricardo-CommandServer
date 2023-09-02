@@ -1,5 +1,9 @@
 from CommandServer.commandserver import CommandServer
-import movesrvprss, movesrvoxvent, movesrvfuelvent
+# import movesrvprss, movesrvoxvent, movesrvfuelvent
+
+from . import movesrvprss
+from . import movesrvoxvent
+from . import movesrvfuelvent
 
 @CommandServer.register('manualfill')
 def manualfill(instance,args):

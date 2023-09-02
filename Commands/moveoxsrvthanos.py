@@ -4,7 +4,7 @@ import time
 
 moveoxsrvthanos_ap = Cmd2ArgumentParser()
 moveoxsrvthanos_ap.add_argument("--argument",type=int,required=True)
-@CommandServer.register('moveoxsrvthanos',args=moveoxsrvthanos_ap)
+@CommandServer.register('moveoxsrvthanos',argparse=moveoxsrvthanos_ap)
 def moveoxsrvthanos(instance,args):
 
     command_packet_args = {"source":1,

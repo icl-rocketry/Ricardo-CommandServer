@@ -4,7 +4,7 @@ import time
 
 firepyromain_ap = Cmd2ArgumentParser()
 firepyromain_ap.add_argument("--argument",type=int,required=True)
-@CommandServer.register('firepyromain',args=firepyromain_ap)
+@CommandServer.register('firepyromain',argparse=firepyromain_ap)
 def firepyromain(instance,args):
 
     command_packet_args = {"source":1,
