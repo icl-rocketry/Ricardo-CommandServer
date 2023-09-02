@@ -4,11 +4,11 @@ import time
 
 movesrvoxvent_ap = Cmd2ArgumentParser()
 movesrvoxvent_ap.add_argument("--argument",type=int,required=True)
-@CommandServer.register('movesrvoxvent',movesrvoxvent_ap)
+@CommandServer.register('movesrvoxvent',argparse=movesrvoxvent_ap)
 def movesrvoxvent(instance,args):
 
     command_packet_args = {"source":1,
-                        "source_service":2,
+                        "source_service":instance.source_service,
                         "destination":8,
                         "destination_service":10,
                         "command_id":2,

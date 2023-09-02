@@ -6,7 +6,7 @@ import time
 def disarmpyromain(instance,args):
 
     command_packet_args = {"source":1,
-                        "source_service":2,
+                        "source_service":instance.source_service,
                         "destination":15,
                         "destination_service":12,
                         "command_id":4,

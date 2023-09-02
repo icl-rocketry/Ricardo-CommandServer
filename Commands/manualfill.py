@@ -7,6 +7,8 @@ from . import movesrvfuelvent
 
 @CommandServer.register('manualfill')
 def manualfill(instance,args):
-    movesrvprss.movesrvprss(instance,args)
-    movesrvfuelvent.movesrvfuelvent(instance,args)
-    movesrvoxvent.movesrvoxvent(instance,args)
+    movesrvprss_args = {"argument":0}
+    movesrvfuelvent_args = {"argument":180}
+    
+    movesrvprss.movesrvprss(instance,movesrvprss_args)
+    movesrvfuelvent.movesrvfuelvent(instance,movesrvfuelvent_args)

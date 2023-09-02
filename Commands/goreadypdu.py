@@ -6,8 +6,8 @@ import time
 def goreadypdu(instance,args):
 
     command_packet_args = {"source":1,
-                        "source_service":2,
-                        "destination":11,
+                        "source_service":instance.source_service,
+                        "destination":5,
                         "destination_service":2,
                         "command_id":1,
                         "command_arg":0}

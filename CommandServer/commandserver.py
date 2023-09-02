@@ -28,6 +28,8 @@ class CommandServer():
         self.nocli = nocli
         self.noflask = noflask
         self.enable_test = enable_test
+        
+        self.source_service = 0
 
         self.flask_interface = CommandServerFlask(flaskport=self.rest_port,verbose=self.verbose)
 

@@ -8,8 +8,8 @@ restartlogic_ap.add_argument("--argument",type=int,required=True)
 def restartlogic(instance,args):
 
     command_packet_args = {"source":1,
-                        "source_service":2,
-                        "destination":11,
+                        "source_service":instance.source_service,
+                        "destination":5,
                         "destination_service":2,
                         "command_id":3,
                         "command_arg":args['argument']}

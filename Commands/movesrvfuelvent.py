@@ -8,8 +8,8 @@ movesrvfuelvent_ap.add_argument("--argument",type=int,required=True)
 def movesrvfuelvent(instance,args):
 
     command_packet_args = {"source":1,
-                        "source_service":2,
-                        "destination":9,
+                        "source_service":instance.source_service,
+                        "destination":7,
                         "destination_service":10,
                         "command_id":2,
                         "command_arg":args['argument']}
