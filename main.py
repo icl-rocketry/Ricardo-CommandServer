@@ -12,6 +12,7 @@ ap.add_argument('--noflask',help='disable flask rest api',action='store_true',de
 ap.add_argument('--nocli',help='disable command line interface',action='store_true',default=False)
 ap.add_argument('--flask_port',help='flask port',type=int,default=1339)
 ap.add_argument('-v','--verbose',help='make thing printy printy',action='store_true',default=False)
+ap.add_argument('--test',help='enable testmode, i.e disable sio client',action='store_true',default=False)
 args = ap.parse_args()
 
 if __name__=='__main__':
@@ -20,6 +21,7 @@ if __name__=='__main__':
                        rest_port=args.flask_port,
                        verbose=args.verbose,
                        nocli=args.nocli,
-                       noflask=args.noflask)
+                       noflask=args.noflask,
+                       enable_test = args.test)
     cs.run()
 
