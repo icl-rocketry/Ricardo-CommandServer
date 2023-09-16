@@ -3,8 +3,9 @@ from cmd2.decorators import with_argparser
 import time
 
 class CommandServerCLI(cmd2.Cmd):
-    def __init__(self):
+    def __init__(self,logger=None):
         super().__init__(allow_cli_args=False)
+        self.logger=logger
 
     def run(self):
         return self._cmdloop_reimplementation()
@@ -13,6 +14,7 @@ class CommandServerCLI(cmd2.Cmd):
     #we can run this in a thread lol
 
     def _cmdloop_reimplementation(self):
+        
         # Register a SIGINT signal handler for Ctrl+C
 
         # Grab terminal lock before the command line prompt has been drawn by readline

@@ -6,7 +6,7 @@ from eventlet import wsgi
 
 
 class CommandServerFlask():
-    def __init__(self,flaskhost:str = "0.0.0.0",flaskport:int=1337,verbose:bool=False):
+    def __init__(self,flaskhost:str = "0.0.0.0",flaskport:int=1337,verbose:bool=False,logger=None):
         self.app = Flask(__name__)
         flask_cors.CORS(self.app, resources={r"/api/*": {"origins": "*"}})
         # self.app.config['DEBUG'] = False
@@ -14,6 +14,7 @@ class CommandServerFlask():
         self.flaskport = flaskport
         self.verbose = verbose
         self.api_prefix = '/api/'
+        self.logger=logger
 
     def run(self):
         wsgi.server(eventlet.listen((self.flaskhost,self.flaskport)),self.app)
