@@ -1,8 +1,8 @@
 from CommandServer.commandserver import CommandServer
 import time
 
-@CommandServer.register('armsrvoxvent')
-def armsrvoxvent(instance,args):
+@CommandServer.register('armsrvoxfill')
+def armsrvoxfill(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,

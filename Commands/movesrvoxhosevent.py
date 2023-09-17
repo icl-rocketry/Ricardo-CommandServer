@@ -2,10 +2,10 @@ from CommandServer.commandserver import CommandServer
 from cmd2 import Cmd2ArgumentParser
 import time
 
-movesrvfuelvent_ap = Cmd2ArgumentParser()
-movesrvfuelvent_ap.add_argument("--argument",type=int,required=True)
-@CommandServer.register('movesrvfuelvent',argparse=movesrvfuelvent_ap)
-def movesrvfuelvent(instance,args):
+movesrvoxhosevent_ap = Cmd2ArgumentParser()
+movesrvoxhosevent_ap.add_argument("--argument",type=int,required=True)
+@CommandServer.register('movesrvoxhosevent',argparse=movesrvoxhosevent_ap)
+def movesrvoxhosevent(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
