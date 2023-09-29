@@ -8,6 +8,6 @@ from . import armsrvprss
 @CommandServer.register('armrocketvalves')
 def armrocketvalves(instance,args):
 
-    armsrvfuelvent.armsrvfuelvent(instance)
-    armsrvoxvent.armsrvoxvent(instance)
-    armsrvprss.armsrvprss(instance)
+    armsrvfuelvent.armsrvfuelvent(instance,args)
+    armsrvoxvent.armsrvoxvent(instance,args)
+    armsrvprss.armsrvprss(instance,args)
