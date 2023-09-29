@@ -1,17 +1,11 @@
 from CommandServer.commandserver import CommandServer
-from cmd2 import Cmd2ArgumentParser
-import time
 
-restartlogic_ap = Cmd2ArgumentParser()
-restartlogic_ap.add_argument("--argument",type=int,required=True)
-@CommandServer.register('restartlogic',argparse=restartlogic_ap)
+from . import restartlogicpdu0
+from . import restartlogicpdu1
+
+@CommandServer.register('restartlogic')
 def restartlogic(instance,args):
-
-    command_packet_args = {"source":1,
-                        "source_service":instance.source_service,
-                        "destination":5,
-                        "destination_service":2,
-                        "command_id":3,
-                        "command_arg":args['argument']}
-
-    instance.send_command_packet(command_packet_args)
+    restartlogic_args = {"argument":5000}
+    
+    restartlogicpdu0.restartlogicpdu0(instance,restartlogic_args)
+    restartlogicpdu1.restartlogicpdu1(instance,restartlogic_args)
