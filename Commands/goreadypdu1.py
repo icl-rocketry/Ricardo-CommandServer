@@ -2,8 +2,8 @@ from CommandServer.commandserver import CommandServer
 import time
 
 
-@CommandServer.register('goreadypdu')
-def goreadypdu(instance,args):
+@CommandServer.register('goreadypdu1')
+def goreadypdu1(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,

@@ -2,12 +2,12 @@ from CommandServer.commandserver import CommandServer
 import time
 
 
-@CommandServer.register('golivepdu')
-def golivepdu(instance,args):
+@CommandServer.register('golivepdu0')
+def golivepdu0(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
-                        "destination":5,
+                        "destination":6,
                         "destination_service":2,
                         "command_id":2,
                         "command_arg":0}
