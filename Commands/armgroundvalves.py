@@ -6,5 +6,5 @@ from . import armsrvoxhosevent
 
 @CommandServer.register('armgroundvalves')
 def armgroundvalves(instance,args):
-    armsrvoxfill.armsrvoxfill(instance)
-    armsrvoxhosevent.armsrvoxhosevent(instance)
+    armsrvoxfill.armsrvoxfill(instance,args)
+    armsrvoxhosevent.armsrvoxhosevent(instance,args)

@@ -6,5 +6,5 @@ from . import disarmsrvoxhosevent
 
 @CommandServer.register('disarmgroundvalves')
 def disarmgroundvalves(instance,args):
-    disarmsrvoxfill.disarmsrvoxfill(instance)
-    disarmsrvoxhosevent.disarmsrvoxhosevent(instance)
+    disarmsrvoxfill.disarmsrvoxfill(instance,args)
+    disarmsrvoxhosevent.disarmsrvoxhosevent(instance,args)
