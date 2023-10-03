@@ -1,8 +1,8 @@
 from CommandServer.commandserver import CommandServer
 import time
 
-@CommandServer.register('checkcanards')
-def checkcanards(instance,args):
+@CommandServer.register('wigglecanards')
+def wigglecanards(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
