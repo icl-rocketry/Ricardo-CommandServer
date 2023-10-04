@@ -32,16 +32,11 @@ COPY ./requirements.txt ./requirements.txt
 RUN pip3 install -r ./requirements.txt
 
 # Copy command server files
-COPY ./.git ./.git
-COPY ./.gitmodules ./.gitmodules
 COPY ./external ./external
 COPY ./Commands ./Commands
 COPY ./CommandServer ./CommandServer
 COPY ./main.py ./main.py
 COPY ./RicardoCommandServer.sh ./RicardoCommandServer.sh
-
-# Initialise and update submodules
-RUN git submodule init && git submodule update
 
 # Make the backend script executable
 RUN chmod +x ./RicardoCommandServer.sh
