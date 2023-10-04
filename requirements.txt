@@ -1,0 +1,15 @@
+# TODO: prune
+cmd2
+cobs
+eventlet
+Flask
+Flask_SocketIO
+flask-cors
+python-socketio
+pandas
+pyserial
+requests
+urwid
+aiohttp
+websockets
+simplejson
