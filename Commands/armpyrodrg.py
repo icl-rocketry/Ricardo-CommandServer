@@ -9,6 +9,6 @@ def armpyrodrg(instance,args):
                         "destination":17,
                         "destination_service":10,
                         "command_id":3,
-                        "command_arg":0}
+                        "command_arg":1}
 
     instance.send_command_packet(command_packet_args)
