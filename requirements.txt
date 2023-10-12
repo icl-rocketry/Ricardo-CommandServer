@@ -12,4 +12,5 @@ requests
 urwid
 aiohttp
 websockets
+websocket-client
 simplejson
