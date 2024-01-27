@@ -9,9 +9,9 @@ def debugthanos(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
-                        "destination":12,
+                        "destination":102,
                         "destination_service":10,
                         "command_id":2,
-                        "command_arg":3}
+                        "command_arg":args['argument']}
 
     instance.send_command_packet(command_packet_args)
