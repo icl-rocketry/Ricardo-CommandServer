@@ -6,8 +6,8 @@ def armsrvoxvent(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
-                        "destination":9,
-                        "destination_service":10,
+                        "destination":103,
+                        "destination_service":11,
                         "command_id":3,
                         "command_arg":0}
 
