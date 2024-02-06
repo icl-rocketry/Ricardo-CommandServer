@@ -6,7 +6,22 @@ Hello. This provides a command server to interract with the ricardo-backend. It 
 High level documentation is on the wiki (https://wiki.imperialrocketry.com/en/Electronics/Software/Ricardo-CommandServer).
 
 # Running 
-...
+## Local
+Install dependancies using the requirements.txt:
+```
+pip install -r requirements.txt
+```
+
+Run:
+
+```
+python ./main.py
+```
+
+Use the -h flag to see all available command line args.
+
+## Docker
+Docker file provided for running command server under docker.
 
 # Testing 
 WIP
