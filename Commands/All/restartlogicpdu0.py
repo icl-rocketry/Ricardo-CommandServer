@@ -9,7 +9,7 @@ def restartlogicpdu0(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
-                        "destination":7,
+                        "destination":6,
                         "destination_service":2,
                         "command_id":3,
                         "command_arg":args['argument']}
