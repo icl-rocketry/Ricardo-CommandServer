@@ -13,6 +13,6 @@ def armpyro(instance,args):
                         "destination":args['destination'],
                         "destination_service":args['destination_service'],
                         "command_id":3,
-                        "command_arg":0}
+                        "command_arg":1}
 
     instance.send_command_packet(command_packet_args)
