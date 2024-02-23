@@ -2,9 +2,9 @@ from CommandServer.commandserver import CommandServer
 from cmd2 import Cmd2ArgumentParser
 import time
 
-TVCcalibration_ap = Cmd2ArgumentParser()
-@CommandServer.register('TVCcalibration',argparse=TVCcalibration_ap)
-def TVCcalibration(instance,args):
+TVCpretestcalibration_ap = Cmd2ArgumentParser()
+@CommandServer.register('TVCpretestcalibration',argparse=TVCpretestcalibration_ap)
+def TVCpretestcalibration(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
