@@ -5,6 +5,13 @@ Hello. This provides a command server to interract with the ricardo-backend. It 
 # Documentation
 High level documentation is on the wiki (https://wiki.imperialrocketry.com/en/Electronics/Software/Ricardo-CommandServer).
 
+# Configuration
+Using the -c flag the Commands folder can be relocated to another location.
+```
+python ./main.py -c ../externalCommandFolder/
+```
+The external commands folder must be a valid python module and all the command python scripts must be added to the \__all\__ variable. Easiest way is to copy the existing \__init\__.py located inside Commands.
+
 # Running 
 ## Local
 Install dependancies using the requirements.txt:
@@ -22,6 +29,8 @@ Use the -h flag to see all available command line args.
 
 ## Docker
 Docker file provided for running command server under docker.
+
+
 
 # Testing 
 WIP
