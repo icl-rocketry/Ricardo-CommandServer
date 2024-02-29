@@ -10,7 +10,7 @@ Using the -c flag the Commands folder can be relocated to another location.
 ```
 python ./main.py -c ../externalCommandFolder/
 ```
-The external commands folder must be a valid python module and all the command python scripts must be added to the \__all\__ variable. Easiest way is to copy the existing \__init\__.py located inside Commands.
+The external commands folder must be a valid python module and all the command python scripts must be added to the \_\_all\_\_ variable. Easiest way is to copy the existing \_\_init\_\_.py located inside Commands.
 
 # Running 
 ## Local
