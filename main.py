@@ -24,11 +24,16 @@ if not os.path.exists(path):
     print("Module path does not exist!")
     sys.exit(0)
 
-spec = importlib.util.spec_from_file_location("_CommandsModule", path) # generate spec from path and generate new 
-_commands_module = importlib.util.module_from_spec(spec) #create module object
-sys.modules["_CommandsModule"] = _commands_module #add to sys modules
-spec.loader.exec_module(_commands_module) #execute module
-from _CommandsModule import * #import the custom module
+try:
+    spec = importlib.util.spec_from_file_location("_CommandsModule", path) # generate spec from path and generate new 
+    _commands_module = importlib.util.module_from_spec(spec) #create module object
+    sys.modules["_CommandsModule"] = _commands_module #add to sys modules
+    spec.loader.exec_module(_commands_module) #execute module
+    from _CommandsModule import * #import the custom module
+except Exception as e:
+    print (e)
+    print('Error while importing command module!')
+    sys.exit(0)
 
 
 
