@@ -3,6 +3,8 @@ from CommandServer.commandserver import CommandServer
 from Commands import * 
 
 import argparse
+import signal
+import sys
 
 
 ap = argparse.ArgumentParser()
@@ -15,7 +17,15 @@ ap.add_argument('-v','--verbose',help='make thing printy printy',action='store_t
 ap.add_argument('--test',help='enable testmode, i.e disable sio client',action='store_true',default=False)
 args = ap.parse_args()
 
+def exitHandler(*args, **kwargs):
+    # Exit process
+    sys.exit()
+
 if __name__=='__main__':
+    # Set signal handlers
+    signal.signal(signal.SIGINT, exitHandler)
+    signal.signal(signal.SIGTERM, exitHandler)
+
     cs = CommandServer(backend_host=args.backend_host,
                        backend_port=args.backend_port,
                        rest_port=args.flask_port,
