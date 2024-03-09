@@ -4,6 +4,7 @@ import argparse
 import os
 import sys
 import importlib.util
+import signal
 
 
 ap = argparse.ArgumentParser()
@@ -35,10 +36,15 @@ except Exception as e:
     print('Error while importing command module!')
     sys.exit(0)
 
-
-
+def exitHandler(*args, **kwargs):
+    # Exit process
+    sys.exit()
 
 if __name__=='__main__':
+    # Set signal handlers
+    signal.signal(signal.SIGINT, exitHandler)
+    signal.signal(signal.SIGTERM, exitHandler)
+
     cs = CommandServer(backend_host=args.backend_host,
                        backend_port=args.backend_port,
                        rest_port=args.flask_port,

@@ -37,11 +37,5 @@ do
    echo $arg
 done
 
-# Print start message
-echo "Starting the Ricardo Command Server"
-
 # Execute the Ricardo Command Server main file
-python3 main.py $args_str
-
-# Print exit message
-echo "Ricardo Command Server exited"
+exec python3 main.py $args_str
