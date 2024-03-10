@@ -38,7 +38,7 @@ except Exception as e:
 
 def exitHandler(*args, **kwargs):
     # Exit process
-    sys.exit()
+    sys.exit(0)
 
 if __name__=='__main__':
     # Set signal handlers
