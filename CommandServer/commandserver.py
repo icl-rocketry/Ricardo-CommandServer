@@ -1,8 +1,10 @@
 import socketio
+import socket
 import time
 from cmd2 import Cmd2ArgumentParser
 import threading
 import logging
+import copy
 
 from pylibrnp import defaultpackets
 
@@ -29,14 +31,15 @@ class CommandServer():
         self.nocli = nocli
         self.noflask = noflask
         self.enable_test = enable_test
+        self.ip = self.__getIP__()
 
         self.source_service = 0
 
         self.flask_interface = CommandServerFlask(flaskport=self.rest_port,verbose=self.verbose)
 
         #manually register send command pakcet endpoints 
-        CommandServerCLI.register_command(command_name='send_command_packet',parser=self.send_command_packet_ap,command_func=self.send_command_packet)
-        self.flask_interface.register_command(command_name='send_command_packet',command_func=self.send_command_packet)
+        CommandServerCLI.register_command(command_name='send_command_packet',parser=self.send_command_packet_ap,command_func=self.wrapped_send_command_packet)
+        self.flask_interface.register_command(command_name='send_command_packet',command_func=self.wrapped_send_command_packet)
         #register all other endpoints
         self._register_endpoints()
 
@@ -62,7 +65,11 @@ class CommandServer():
         self.send_packet(cmd_packet.serialize())
 
         return True
-        
+    
+    #wrapped send command packet function to allow event logging of command when send command packet fucntion is called through an endpoint
+    def wrapped_send_command_packet(self,args:dict):
+        self.__sendSystemEvent__("send_command_packet",args)
+        return self.send_command_packet(args) #why does this return true????
 
     def send_packet(self,data:bytes):
         #if we want to make this multiprocessing safe, this is the only function which 'shares a resource' so deal with it here only
@@ -73,7 +80,7 @@ class CommandServer():
         if not self.enable_test:
             while True:
                 try:
-                    self.sio.connect('http://' + self.backend_host + ':' + str(self.backend_port) + '/',namespaces=['/','/packet'])
+                    self.sio.connect('http://' + self.backend_host + ':' + str(self.backend_port) + '/',namespaces=['/','/packet','/system_events'])
                     break
                 except socketio.exceptions.ConnectionError:
                     print('Server not found, attempting to reconnect!')
@@ -100,6 +107,7 @@ class CommandServer():
             #create wrapper to wrap actual command, spawning the command function in a new thread as a deamon and 
             #passing the instance of the current class
             def command_function_wrapper(instance,args:dict):
+                cls.__sendSystemEvent__(instance,command_name,args)
                 t = threading.Thread(target=command_func,args=(instance,args,),daemon=True)
                 t.start()
             #register this wrapped function as a member function of the current class
@@ -114,4 +122,35 @@ class CommandServer():
             return register_command
         register_command(command_func)
 
-    
+    #broadcast command executed on system event channel
+    def __sendSystemEvent__(self,command_name:str,command_args:dict):
+        # filter out cmd2 specific keys in dict
+        filtered_command_args =  {key: command_args[key] for key in command_args.keys() - {'cmd2_statement','cmd2_handler'}}
+        event_msg:str = command_name + " exectued with the following arguments: " + str(repr(filtered_command_args))
+        event = {
+                "level":"info",
+                "name":command_name + " Command",
+                "msg":event_msg,
+                "time":time.time_ns()*(1e-6), #conversion to milliseconds?? idk
+                "source":{
+                            "application":"Ricardo-CommandServer", #TODO maybe add versioning?
+                            "ip":self.ip
+                        }
+                }
+        try:
+            self.sio.emit('forward_event',event,namespace='/system_events')
+        except socketio.exceptions.BadNamespaceError:
+            pass
+        
+
+    def __getIP__(self):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        try:
+            # doesn't even have to be reachable
+            s.connect(('192.255.255.255', 1))
+            IP = s.getsockname()[0]
+        except:
+            IP = '127.0.0.1'
+        finally:
+            s.close()
+        return IP
