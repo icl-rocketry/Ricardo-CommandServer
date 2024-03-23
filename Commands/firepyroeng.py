@@ -9,8 +9,8 @@ def firepyroeng(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
-                        "destination":11,
-                        "destination_service":11,
+                        "destination":107,
+                        "destination_service":12,
                         "command_id":2,
                         "command_arg":args['argument']}
 
