@@ -2,8 +2,8 @@ from CommandServer.commandserver import CommandServer
 from cmd2 import Cmd2ArgumentParser
 import time
 
-@CommandServer.register('armall')
-def armall(instance,args):
+@CommandServer.register('disarmall')
+def disarmall(instance,args):
 
     args['destination'] = 5
     args['destination_service'] = 10
