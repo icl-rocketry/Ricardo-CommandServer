@@ -4,13 +4,14 @@ import time
 
 firesolenoid_ap = Cmd2ArgumentParser()
 firesolenoid_ap.add_argument("--argument",type=int,required=True)
+firesolenoid_ap.add_argument("--channel",type=int,required=True)
 @CommandServer.register('firesolenoid',argparse=firesolenoid_ap)
 def firesolenoid(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
                         "destination":107,
-                        "destination_service":11,
+                        "destination_service":args['channel'],
                         "command_id":2,
                         "command_arg":args['argument']}
 
