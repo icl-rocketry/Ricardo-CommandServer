@@ -13,9 +13,6 @@ FROM python:3.10-slim as debian-slim
 # Update/upgrade packages
 RUN apt-get update && apt-get upgrade -y
 
-# Install git
-RUN apt-get install git -y
-
 ## Ricardo-CommandServer image
 FROM $BASEIMAGE
 

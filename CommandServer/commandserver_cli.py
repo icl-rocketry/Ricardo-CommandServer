@@ -1,6 +1,7 @@
 import cmd2
 from cmd2.decorators import with_argparser
 import time
+import sys
 
 class CommandServerCLI(cmd2.Cmd):
     def __init__(self,logger=None):
@@ -8,7 +9,7 @@ class CommandServerCLI(cmd2.Cmd):
         self.logger=logger
 
     def run(self):
-        return self._cmdloop_reimplementation()
+        sys.exit(self._cmdloop_reimplementation())
         
     #literally stolen from cmd2 cmdloop and _cmdloop implementation with the addition of time.sleep(0) so that 
     #we can run this in a thread lol
