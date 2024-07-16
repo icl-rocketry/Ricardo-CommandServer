@@ -8,6 +8,6 @@ def openservo_cosmos(instance,args):
                         "destination":104,
                         "destination_service": 10,
                         "command_id":2,
-                        "command_arg":113}
+                        "command_arg":105}
 
     instance.send_command_packet(command_packet_args)
