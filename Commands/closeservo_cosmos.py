@@ -1,7 +1,7 @@
 from CommandServer.commandserver import CommandServer
 
-@CommandServer.register('armsolenoid')
-def armsolenoid(instance,args):
+@CommandServer.register('closeservo_cosmos')
+def closeservo_cosmos(instance,args):
 
     command_packet_args = {"source":1,
                         "source_service":instance.source_service,
