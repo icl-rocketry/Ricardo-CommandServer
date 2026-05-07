@@ -80,10 +80,21 @@ class CommandServer():
         if not self.enable_test:
             while True:
                 try:
-                    self.sio.connect('http://' + self.backend_host + ':' + str(self.backend_port) + '/',namespaces=['/','/packet','/system_events'])
+                    if self.sio.connected:
+                        self.sio.disconnect()
+
+                    self.sio.connect(
+                        f'http://{self.backend_host}:{self.backend_port}',
+                        namespaces=['/','/packet']
+                    )
                     break
-                except socketio.exceptions.ConnectionError:
-                    print('Server not found, attempting to reconnect!')
+
+                except Exception as e:
+                    print(f'Connection failed: {e}')
+                    try:
+                        self.sio.disconnect()
+                    except:
+                        pass
                     time.sleep(1)
         # self.flask_interface.run()
         if not self.nocli:
